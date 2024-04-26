@@ -11,8 +11,6 @@
 AMyPlayerController::AMyPlayerController()
 {
 	PawnMappingTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/DataTables/PawnMapingTable.PawnMapingTable"));
-
-
 }
 
 void AMyPlayerController::SetupInputComponent()
@@ -31,9 +29,6 @@ void AMyPlayerController::SetupInputComponent()
 
 
 void AMyPlayerController::SpawnAndPossessPawn() {
-
-	
-
 	if (PawnMappingTable)
 	{
 		TArray<FName> RowNames = PawnMappingTable->GetRowNames();
@@ -89,5 +84,11 @@ void AMyPlayerController::OnPossess(APawn* aPawn)
 void AMyPlayerController::OnUnPossess()
 {
 	Super::OnUnPossess();
-	
+}
+
+void AMyPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, "PRESS 'P' On your keyboard to change pawns.");
+	SpawnAndPossessPawn();
 }

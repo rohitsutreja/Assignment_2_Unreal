@@ -65,6 +65,9 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void ShowAttributes(UPawnAttributeAsset* Attributes);
 
+
+	void BeginPlay() override;
+
 private:
 	int idx{};
 };
