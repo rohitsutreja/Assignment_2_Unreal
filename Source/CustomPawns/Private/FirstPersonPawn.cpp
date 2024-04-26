@@ -3,8 +3,7 @@
 
 #include "FirstPersonPawn.h"
 #include "Components/CapsuleComponent.h"
-#include "../Plugins/EnhancedInput/Source/EnhancedInput/Public/EnhancedInputSubsystems.h"
-
+#include "EnhancedInputSubsystems.h"
 #include "GameFramework/Character.h"
 
 class UCharacterMovementComponent;
@@ -54,9 +53,14 @@ void AFirstPersonPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	NegateModifireForMouse->bY = true;
 	NegateModifireForMouse->bZ = false;
 
-
 	auto& MouseMapping = MappingContext->MapKey(ActionLook, EKeys::Mouse2D);
 	MouseMapping.Modifiers.Add(NegateModifireForMouse);
+
+	ActionJump = NewObject<UInputAction>(this);
+	ActionJump->ValueType = EInputActionValueType::Boolean;
+
+	MappingContext->MapKey(ActionJump, EKeys::SpaceBar);
+
 
 	if (auto EIC = Cast<UEnhancedInputComponent>(InputComponent)) {
 		if (ActionMove) {
@@ -65,6 +69,10 @@ void AFirstPersonPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 		if (ActionLook) {
 			EIC->BindAction(ActionLook, ETriggerEvent::Triggered, this, &AFirstPersonPawn::HandleLook);
+		}
+
+		if (ActionJump) {
+			EIC->BindAction(ActionJump, ETriggerEvent::Triggered, this, &AFirstPersonPawn::HandleJump);
 		}
 
 		if (auto MPC = Cast<APlayerController>(GetController())) {
@@ -97,5 +105,10 @@ void AFirstPersonPawn::HandleLook(const FInputActionValue& value) {
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
 
+}
+
+void AFirstPersonPawn::HandleJump()
+{
+	Jump();
 }
 

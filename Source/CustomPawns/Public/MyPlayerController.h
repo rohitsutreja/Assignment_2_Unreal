@@ -6,7 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Engine/DataTable.h"
 #include "DataTableEditor/Private/SRowEditor.h"
-#include "../Plugins/EnhancedInput/Source/EnhancedInput/Public/InputAction.h"
+#include "InputAction.h"
 #include "FirstPersonPawn.h"
 #include "MyPlayerController.generated.h"
 

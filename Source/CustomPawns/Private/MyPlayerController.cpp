@@ -3,8 +3,8 @@
 
 #include "MyPlayerController.h"
 #include "Engine/World.h"
-#include "../Plugins/EnhancedInput/Source/EnhancedInput/Public/EnhancedInputComponent.h"
-#include "../Plugins/EnhancedInput/Source/EnhancedInput/Public/EnhancedInputSubsystems.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
 #include "../TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 
 

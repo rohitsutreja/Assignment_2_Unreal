@@ -4,12 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "../Plugins/EnhancedInput/Source/EnhancedInput/Public/EnhancedInputComponent.h"
+#include "EnhancedInputComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "GameFramework/FloatingPawnMovement.h"
-#include "../Plugins/EnhancedInput/Source/EnhancedInput/Public/InputMappingContext.h"
+#include "InputMappingContext.h"
 #include "BaseCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "FirstPersonPawn.generated.h"
@@ -40,6 +39,8 @@ public:
 	void HandleMove(const FInputActionValue& FInputActionValue);
 
 	void HandleLook(const FInputActionValue& value);
+
+	void HandleJump();
 
 public:
 	UPROPERTY(EditDefaultsOnly)
